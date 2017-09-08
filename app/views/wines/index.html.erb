@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="text-center">
+      <h1>Mes vins</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row padded">
+    <ul>
+      <% @wines.each do |wine| %>
+      <ul>
+        <li> Appelation: <%= wine.appelation %> </li>
+        <li> Domaine: <%= wine.domain %> </li>
+        <li> Millésime: <%= wine.year %> </li>
+        <li> Couleur: <%= wine.color %> </li>
+        <li> Stock: <%= wine.stock %> bouteilles </li>
+        <%= link_to 'Voir', wine_path(wine)%>
+      </ul>
+      <% end %>
+    </ul>
+  </div>
+</div>
