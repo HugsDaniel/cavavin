@@ -1,9 +1,23 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
 
-<%= simple_form_for(@wine) do |f| %>
-<div class="form-inputs">
-  <%= f.input :domain, placeholder: "Choose a wine", class: "btn-lg search" %>
-  <%= f.button :submit, "Ajoutez votre vin", class: "btn btn-primary btn-lg" %>
-  <% end %>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgb(160, 10, 10) 0%, rgba(50,36,61,0.6) 50%), url('http://discovermagazine.com/~/media/Images/Issues/2016/September/wine.jpg');">
+  <div class="banner-content">
+    <%= link_to root_path, class: "navbar-wagon-brand" do %>
+    <%= image_tag "wine.png" %>
+    <% end %>
+    <h1>Cavavin</h1>
+    <p>Ma cave, partout où je vais</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4">
+          <%= link_to 'Ma cave', wines_path, class: "btn-treehouse" %>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <%= link_to 'Ajouter un vin', new_wine_path, class: "btn-treehouse" %>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <%= link_to 'Rechercher un vin', search_path, class: "btn-treehouse" %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

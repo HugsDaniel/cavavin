@@ -7,6 +7,8 @@ gem 'pg'
 gem 'puma'
 gem 'rails', '5.0.4'
 gem 'redis'
+gem 'mechanize'
+gem 'nokogiri'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'

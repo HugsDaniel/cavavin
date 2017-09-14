@@ -1,5 +1,5 @@
 class WinesController < ApplicationController
-  before_action :set_wine, only: [:show]
+  before_action :set_wine, only: [:show, :destroy, :edit]
 
   def index
     @wines = Wine.all
@@ -9,20 +9,6 @@ class WinesController < ApplicationController
   end
 
   def new
-    @search = params[:wine]
-    @search.gsub!(/\s/,'-')
-    url = "http://avis-vin.lefigaro.fr/recherche/#{@search}"
-
-    html_file = open(url).read
-    html_doc = Nokogiri::HTML(html_file)
-
-    wines = []
-
-    html_doc.search('.wine-infos.fleft h3 a').each do |element|
-      wines << element.text
-    end
-
-    puts wines
     @wine = Wine.new
   end
 
@@ -37,6 +23,22 @@ class WinesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @wine = Wine.update(wine_params)
+
+    redirect_to wine_path(@wine)
+    flash[:notice] = "Vous avez modifié ce vin !"
+  end
+
+  def destroy
+    @wine.destroy
+    redirect_to wines_path, :notice => "Vin supprimé"
+  end
+
+
   private
 
   def set_wine
@@ -44,7 +46,7 @@ class WinesController < ApplicationController
   end
 
   def wine_params
-    params.require(:wine).permit(:appelation, :domain, :year, :color)
+    params.require(:wine).permit(:appelation, :domain, :year, :color, :stock)
   end
 
   def scrape_figaro(wine)
