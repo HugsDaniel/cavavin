@@ -1,23 +1,24 @@
 <h1 class="text-center">Ajoutez un vin à votre cave !</h2>
+  
 
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
-      <%= simple_form_for(@wine) do |f| %>
-      <%= f.error_notification %>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
+        <%= simple_form_for(@wine) do |f| %>
+        <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :appelation, required: true, autofocus: true, label: "Appelation" %>
-    <%= f.input :domain, required: true, label: "Domaine" %>
-    <%= f.input :year, required: true, label: "Millésime" %>
-    <%= f.input :color, required: true, label: "Couleur" %>
-  </div>
+        <div class="form-inputs">
+          <%= f.input :appelation, required: true, autofocus: true, label: "Appelation" %>
+          <%= f.input :domain, required: true, label: "Domaine" %>
+          <%= f.input :year, required: true, label: "Millésime" %>
+          <%= f.input :color, required: true, label: "Couleur" %>
+        </div>
 
 
-      <div class="form-actions">
-        <%= f.button :submit, "Ajoutez votre vin", class: "btn btn-primary btn-lg" %>
-        <% end %>
+        <div class="form-actions">
+          <%= f.button :submit, "Ajoutez votre vin", class: "btn btn-primary btn-lg" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>

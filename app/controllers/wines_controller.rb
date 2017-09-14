@@ -9,6 +9,20 @@ class WinesController < ApplicationController
   end
 
   def new
+    @search = params[:wine]
+    @search.gsub!(/\s/,'-')
+    url = "http://avis-vin.lefigaro.fr/recherche/#{@search}"
+
+    html_file = open(url).read
+    html_doc = Nokogiri::HTML(html_file)
+
+    wines = []
+
+    html_doc.search('.wine-infos.fleft h3 a').each do |element|
+      wines << element.text
+    end
+
+    puts wines
     @wine = Wine.new
   end
 
@@ -31,6 +45,22 @@ class WinesController < ApplicationController
 
   def wine_params
     params.require(:wine).permit(:appelation, :domain, :year, :color)
+  end
+
+  def scrape_figaro(wine)
+    wine.gsub!(/\s/,'-')
+    url = "http://avis-vin.lefigaro.fr/recherche/#{wine}"
+
+    html_file = open(url).read
+    html_doc = Nokogiri::HTML(html_file)
+
+    wines = []
+
+    html_doc.search('.wine-infos.fleft h3 a').each do |element|
+      wines << element.text
+    end
+
+    puts wines
   end
 
 end
