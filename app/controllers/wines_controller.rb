@@ -2,10 +2,13 @@ class WinesController < ApplicationController
   before_action :set_wine, only: [:show, :destroy, :edit]
 
   def index
-    @wines = Wine.all
+    url = "http://avis-vin.lefigaro.fr/vins-champagne/bordeaux/rive-droite/saint-emilion-grand-cru/d23365-chateau-cadet-bon/v23366-chateau-cadet-bon/vin-rouge/2016"
+    Wine.wine_by_figaro(url)
   end
 
   def show
+    url = "http://avis-vin.lefigaro.fr/vins-champagne/bordeaux/rive-droite/saint-emilion-grand-cru/d23365-chateau-cadet-bon/v23366-chateau-cadet-bon/vin-rouge/2016"
+    Wine.wine_by_figaro(url)
   end
 
   def new

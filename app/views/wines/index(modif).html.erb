@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="text-center">
+      <%= link_to root_path, class: "navbar-wagon-brand" do %>
+      <%= image_tag "wine.png" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="text-center">
+      <h1>Mes vins</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row padded">
+    <ul>
+      <% @wines.each do |wine| %>
+      <div class="product">
+        <div class='product-upvote'>
+          <% if wine.color == "Rouge"%>
+          <div class='product-count'><%= image_tag 'wine_red_glass.png'%></div>
+          <% elsif wine.color == "Blanc" %>
+          <% elsif wine.color == "Rosé" %>
+          <% end %>
+        </div>
+        <div class='product-body'>
+          <h3>Château <%= wine.domain %></h3>
+          <p><%= wine.year %></p>
+          <%= wine.appelation %>
+        </br>
+        En stock: <%= wine.stock %> bouteilles
+      </div>
+      <ul class="list-inline product-controls hidden-sm hidden-xs">
+        <li><%= link_to 'Voir', wine_path(wine)%></li> -->
+        <li><%= link_to 'Supprimer', wine_path(wine), method: :delete%></li>
+        <li><%= link_to 'Modifier', edit_wine_path(wine) %></li>
+      </ul>
+    </div>
+    <% end %>
+  </ul>
+</div>
+</div>
