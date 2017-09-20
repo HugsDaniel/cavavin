@@ -1,0 +1,10 @@
+<ul>
+  <% @wines.each do |wine| %>
+  <ul>
+    <li><%= wine[:wine] %></li>
+    <li><%= wine[:region] %></li>
+    <li><%= wine[:color] %></li>
+    <li><%= link_to 'Voir la fiche' , show_path(:link => wine[:link]) %></li>
+  </ul>
+  <% end %>
+</ul>

@@ -1,0 +1,22 @@
+<ul>
+  <li><%= @wine[:wine] %></li>
+  <li><%= @wine[:region] %></li>
+  <li><%= @wine[:color] %></li>
+  <li><%= simple_form_for @wine, :url => save_path, :method => :post do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :appelation, :as => :hidden, :value => @wine[:appelation] %>
+    <%= f.input :domain, :as => :hidden, :value => @wine[:domain] %>
+    <%= f.input :year, :as => :hidden, :value => @wine[:year] %>
+    <%= f.input :color, :as => :hidden, :value => @wine[:color] %>
+    <%= f.input :region, :as => :hidden, :value => @wine[:region] %>
+    <%= f.input :wine, :as => :hidden, :value => @wine[:wine] %>
+    <%= f.input :figaro_note, :as => :hidden, :value => @wine[:figaro_note] %>
+    <%= f.input :grape, :as => :hidden, :value => @wine[:grape] %>
+    <%= f.input :stock, required: true, label: "Combien de bouteilles ?" %>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Ajouter à ma cave", class: "btn btn-primary btn-lg" %>
+      <% end %>
+    </div>
+  </li>
+</ul>
