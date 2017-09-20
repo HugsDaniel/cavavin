@@ -11,10 +11,14 @@ class Scraper < ApplicationRecord
   def self.wine_by_figaro(url)
     html_file = open(url)
     html_doc = Nokogiri::HTML(html_file)
+    return extract_wine_years(html_doc.search('#div-all-millesimes > table > tbody > tr'))
+  end
+
+  def self.scrap_figaro(url)
+    html_file = open(url)
+    html_doc = Nokogiri::HTML(html_file)
     @wine = extract_wine_infos(html_doc.search('#millesime'))
     new_wine = Wine.new(@wine)
-        puts @wine
-        return new_wine
   end
 end
 
@@ -46,4 +50,15 @@ def extract_wine_infos(html_page)
     wine_info[:figaro_note] = element.search('.note-expert').text
   end
   return wine_info
+end
+
+def extract_wine_years(html_page)
+  years = []
+  html_page.each do |element|
+    wine_info = {}
+    wine_info[:year] = element.search('.millesime > a').text
+    wine_info[:link] = element.search('.millesime > a').attribute('href').value
+    years << wine_info
+  end
+  return years
 end

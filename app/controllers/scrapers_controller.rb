@@ -5,12 +5,20 @@ class ScrapersController < ApplicationController
     @wines = Scraper.get_wine_list(url)
   end
 
+  def view
+    @scraper = Scraper.new
+    @scraper.link = params[:link]
+
+    url = "http://avis-vin.lefigaro.fr" + @scraper.link
+    @years = Scraper.wine_by_figaro(url)
+  end
+
   def show
     @scraper = Scraper.new
     @scraper.link = params[:link]
 
-    url = "http://avis-vin.lefigaro.fr" + @scraper.link + "/2016"
-    @wine = Scraper.wine_by_figaro(url)
+    url = "http://avis-vin.lefigaro.fr" + @scraper.link
+    @wine = Scraper.scrap_figaro(url)
   end
 
   def save
