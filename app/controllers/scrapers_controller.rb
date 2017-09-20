@@ -1,8 +1,8 @@
 class ScrapersController < ApplicationController
   def search
-    url = "http://avis-vin.lefigaro.fr/recherche/cadet-bon-2016"
+    @scraper = Scraper.new(search_link)
+    url = "http://avis-vin.lefigaro.fr/recherche/" + @scraper.link
     @wines = Scraper.get_wine_list(url)
-    puts @wines
   end
 
   def show
@@ -28,5 +28,9 @@ class ScrapersController < ApplicationController
 
   def wine_params
     params.require(:wine).permit(:appelation, :domain, :year, :color, :stock, :region, :wine, :figaro_note, :grape)
+  end
+
+  def search_link
+    params.require(:scraper).permit(:link)
   end
 end
