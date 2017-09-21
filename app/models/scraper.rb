@@ -66,7 +66,10 @@ def extract_year_infos(html_page)
     year_info[:wine] = element.search('h2:first').text.strip
     year_info[:domain] = element.search('#millesime-region > li:first > a').text
     year_info[:year] = element.search('#millesime-region > li')[1].search('a').text
-    year_info[:region] = element.search('#millesime-region > li')[2].search('a').text
+    year_info[:region] = []
+    element.search('#millesime-region > li')[2].search('a').each do |a|
+      year_info[:region] << a.text
+    end
     year_info[:appelation] = element.search('#millesime-region > li')[3].search('a').text
     year_info[:grape] = []
     element.search('#millesime-region > li')[4].search('a').each do |a|
