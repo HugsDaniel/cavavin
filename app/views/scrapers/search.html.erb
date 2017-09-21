@@ -1,10 +1,17 @@
 <ul>
   <% @wines.each do |wine| %>
+      <h2><%= wine[:wine] %></h2>
   <ul>
-    <li><%= wine[:wine] %></li>
     <li><%= wine[:region] %></li>
     <li><%= wine[:color] %></li>
-    <li><%= link_to 'Voir la fiche' , show_wine_path(:link => wine[:link]) %></li>
+    <div class="dropdown">
+      <button onclick="myFunction()" class="dropbtn">Les années de ce vin</button>
+      <div id="myDropdown" class="dropdown-content">
+        <% wine[:years].each do |year| %>
+        <%= link_to year[:year], year_path(:link => year[:link]) %>
+        <% end %>
+      </div>
+    </div>
   </ul>
   <% end %>
 </ul>

@@ -10,19 +10,23 @@ class ScrapersController < ApplicationController
 
     # Call of results page scraping class method
     @wines = Scraper.get_wine_list(url) # => array of hashes containing all found wines' basic infos
+    @wines.each do |wine|
+      wine[:years] = Scraper.get_wine_years("http://avis-vin.lefigaro.fr" + wine[:link])
+    end
+    return @wines
   end
 
   # View method gets one wine's url from search method and displays the wine's years
   def show_wine
-    # Creation of a new Scraper object with wine's url as a parameter
-    @scraper = Scraper.new
-    @scraper.link = params[:link]
-
-    # Contruction of the figaro url
-    url = "http://avis-vin.lefigaro.fr" + @scraper.link
-
-    # Call of wine's years scraping class method
-    @years = Scraper.get_wine_years(url) # => array of hashes containing wine's years
+    # # Creation of a new Scraper object with wine's url as a parameter
+    # @scraper = Scraper.new
+    # @scraper.link = params[:link]
+    #
+    # # Contruction of the figaro url
+    # url = "http://avis-vin.lefigaro.fr" + @scraper.link
+    #
+    # # Call of wine's years scraping class method
+    # @years = Scraper.get_wine_years(url) # => array of hashes containing wine's years
   end
 
   # Show method gets year's url from view method and displays year's general informations

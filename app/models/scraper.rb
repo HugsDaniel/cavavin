@@ -6,7 +6,7 @@ class Scraper < ApplicationRecord
     html_file = open(url)
     html_doc = Nokogiri::HTML(html_file)
     # Call of scraping method
-    return get_list(html_doc) # => array oh hashes containing each found wine's basic infos
+    return get_list(html_doc) # => array of hashes containing each found wine's basic infos
   end
 
   # Scraping of one wine's years
