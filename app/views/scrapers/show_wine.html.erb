@@ -1,0 +1,5 @@
+<ul>
+  <% @years.each do |wine| %>
+  <li><%= link_to wine[:year], year_path(:link => wine[:link]) %></li>
+  <% end %>
+</ul>
